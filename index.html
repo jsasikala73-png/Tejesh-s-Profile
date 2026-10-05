@@ -1,54 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Profile Card</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Font for clean typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijay TVK CM Pulse 2026 - Political Survey & Analytics</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+    .tvk-gradient-text {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen bg-slate-950 text-slate-100 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-950">
 
-    <main class="card-container">
-        <!-- Top decorative banner -->
-        <div class="card-header"></div>
+  <!-- Ambient Flag & Theme Gradients -->
+  <div class="fixed inset-0 z-0 bg-cover bg-center opacity-15 mix-blend-overlay pointer-events-none filter blur-[1px]" style="background-image: url('https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=2000&q=80');"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-amber-500/20 via-red-600/10 to-transparent blur-3xl pointer-events-none z-0"></div>
 
-        <!-- Profile details -->
-        <div class="card-body">
-            <div class="avatar-wrapper">
-                <img src="TejaSanges.jpg" alt="Profile Picture" class="avatar">
+  <!-- Header Bar -->
+  <header class="relative z-20 border-b border-amber-500/20 bg-slate-900/90 backdrop-blur-md sticky top-0">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        
+        <!-- Branding Logo -->
+        <div class="flex items-center space-x-3.5">
+          <div class="bg-gradient-to-tr from-amber-400 via-yellow-500 to-red-600 p-3 rounded-2xl text-slate-950 shadow-lg shadow-amber-500/20">
+            <!-- Vote Icon SVG -->
+            <svg class="w-6 h-6 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-black text-xl tracking-tight tvk-gradient-text">
+                TVK CM Pulse 2026
+              </span>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 bg-amber-400/10 text-amber-300 border border-amber-400/30 rounded-full uppercase tracking-wider">
+                Public Survey
+              </span>
             </div>
-
-            <h2 class="profile-name">Tejeshwar</h2>
-            <p class="profile-title">Web Development Student</p>
-            <p class="profile-bio">
-                Passionate about learning front-end web development, building interactive layouts, and experimenting with modern CSS animations.
-            </p>
-
-            <!-- Interactive Stats -->
-            <div class="stats-container">
-                <div class="stat-box">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">Projects</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number">1.2k</span>
-                    <span class="stat-label">Followers</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number">45</span>
-                    <span class="stat-label">Code Repos</span>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="btn btn-primary">Follow</button>
-                <button class="btn btn-secondary">Message</button>
-            </div>
+            <p class="text-xs text-slate-400 font-medium hidden sm:block">Public Sentiment Analysis for Thalapathy Vijay</p>
+          </div>
         </div>
-    </main>
 
+        <!-- Header Right Action Button -->
+        <div id="nav-action-container">
+          <button id="btn-open-admin-modal" onclick="openAdminModal()" class="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-amber-500/20">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            <span>Admin Portal</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="relative z-10 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- VIEW 1: PUBLIC SURVEY FORM -->
+    <section id="view-survey" class="space-y-8">
+      
+      <!-- Vijay Political Header Card -->
+      <div class="bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-slate-950 border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+        <div class="absolute top-0 right-0 -mt-10 -mr-10 w-52 h-52 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase tracking-widest mb-3">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <span>Tamil Nadu CM Preference Assessment</span>
+        </div>
+        
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3">
+          Why choose <span class="tvk-gradient-text">Thalapathy Vijay</span> as Chief Minister?
+        </h1>
+        
+        <p class="text-slate-300 text-sm leading-relaxed max-w-2xl">
+          An independent opinion survey evaluating public trust, key political drivers, and priority policy expectations for Vijay and Tamilaga Vettri Kazhagam (TVK) in Tamil Nadu.
+        </p>
+      </div>
+
+      <!-- Survey Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-8">
+        
+        <!-- Error Banner -->
+        <div id="survey-error" class="hidden p-4 bg-red-500/10 border border-red-500/30 rounded-2xl text-red-300 text-xs font-semibold flex items-center space-x-3">
+          <svg class="w-5 h-5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <span id="survey-error-msg">Please fill all required questions before submitting.</span>
+        </div>
+
+        <form id="survey-form" onsubmit="handleSurveySubmit(event)" class="space-y-8">
+          
+          <!-- Q1: Primary Driving Factor -->
+          <div class="space-y-4">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">1.</span> What is the primary factor driving public trust in Vijay for Chief Minister? <span class="text-red-400">*</span>
+            </label>
+            <div class="space-y-2.5">
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Alternative to traditional political parties (DMK / AIADMK)</span>
+                <input type="radio" name="q_factor" value="Alternative to traditional political parties (DMK / AIADMK)" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Youth icon & clean corrupt-free public image</span>
+                <input type="radio" name="q_factor" value="Youth icon & clean corrupt-free public image" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">TVK Welfare manifesto & progressive vision</span>
+                <input type="radio" name="q_factor" value="TVK Welfare manifesto & progressive vision" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Unmatched charismatic leadership & massive public support</span>
+                <input type="radio" name="q_factor" value="Unmatched charismatic leadership & massive public support" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+            </div>
+          </div>
+
+          <!-- Q2: Policy Priority -->
+          <div class="space-y-4 pt-6 border-t border-slate-800/80">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">2.</span> Which policy area should Vijay's administration prioritize first? <span class="text-red-400">*</span>
+            </label>
+            <div class="space-y-2.5">
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Education reform & eradication of state exam barriers</span>
+                <input type="radio" name="q_priority" value="Education reform & eradication of state exam barriers" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Job creation & IT/Industrial setup in tier-2/3 towns</span>
+                <input type="radio" name="q_priority" value="Job creation & IT/Industrial setup in tier-2/3 towns" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Zero-tolerance anti-corruption drive</span>
+                <input type="radio" name="q_priority" value="Zero-tolerance anti-corruption drive" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+              <label class="q-option p-4 rounded-2xl border border-slate-800/80 bg-slate-950/60 text-slate-300 hover:border-slate-700 hover:bg-slate-950 transition flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium">Agriculture welfare & farmer water rights</span>
+                <input type="radio" name="q_priority" value="Agriculture welfare & farmer water rights" class="accent-amber-400 w-4 h-4" onchange="highlightOption(this)">
+              </label>
+            </div>
+          </div>
+
+          <!-- Q3: Star Rating -->
+          <div class="space-y-4 pt-6 border-t border-slate-800/80">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">3.</span> How would you rate Vijay's readiness to lead Tamil Nadu as CM? <span class="text-red-400">*</span>
+            </label>
+            <div class="flex items-center space-x-2 py-2">
+              <div id="star-rating-group" class="flex space-x-2">
+                <button type="button" onclick="setRating(1)" class="star-btn transition transform hover:scale-110 focus:outline-none" data-value="1">
+                  <svg class="w-8 h-8 text-slate-800 fill-slate-900" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                </button>
+                <button type="button" onclick="setRating(2)" class="star-btn transition transform hover:scale-110 focus:outline-none" data-value="2">
+                  <svg class="w-8 h-8 text-slate-800 fill-slate-900" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                </button>
+                <button type="button" onclick="setRating(3)" class="star-btn transition transform hover:scale-110 focus:outline-none" data-value="3">
+                  <svg class="w-8 h-8 text-slate-800 fill-slate-900" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                </button>
+                <button type="button" onclick="setRating(4)" class="star-btn transition transform hover:scale-110 focus:outline-none" data-value="4">
+                  <svg class="w-8 h-8 text-slate-800 fill-slate-900" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                </button>
+                <button type="button" onclick="setRating(5)" class="star-btn transition transform hover:scale-110 focus:outline-none" data-value="5">
+                  <svg class="w-8 h-8 text-slate-800 fill-slate-900" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                </button>
+              </div>
+              <input type="hidden" id="q_rating" name="q_rating" value="0">
+              <span id="rating-label" class="text-xs font-bold text-amber-300 ml-3">Select 1-5 Stars</span>
+            </div>
+          </div>
+
+          <!-- Q4: Age Demographics -->
+          <div class="space-y-4 pt-6 border-t border-slate-800/80">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">4.</span> Which age group do you belong to? <span class="text-red-400">*</span>
+            </label>
+            <select id="q_age" name="q_age" class="w-full bg-slate-950 border border-slate-800 text-slate-200 text-sm rounded-2xl p-4 focus:outline-none focus:border-amber-400">
+              <option value="">-- Choose Age Category --</option>
+              <option value="18 - 25 years (First-time / Gen-Z Voters)">18 - 25 years (First-time / Gen-Z Voters)</option>
+              <option value="26 - 35 years">26 - 35 years</option>
+              <option value="36 - 50 years">36 - 50 years</option>
+              <option value="Above 50 years">Above 50 years</option>
+            </select>
+          </div>
+
+          <!-- Q5: TN Region -->
+          <div class="space-y-4 pt-6 border-t border-slate-800/80">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">5.</span> Voting Region in Tamil Nadu <span class="text-red-400">*</span>
+            </label>
+            <select id="q_region" name="q_region" class="w-full bg-slate-950 border border-slate-800 text-slate-200 text-sm rounded-2xl p-4 focus:outline-none focus:border-amber-400">
+              <option value="">-- Choose Region --</option>
+              <option value="Northern TN (Chennai/Kanchipuram/Vellore)">Northern TN (Chennai/Kanchipuram/Vellore)</option>
+              <option value="Western TN (Kovai/Erode/Salem)">Western TN (Kovai/Erode/Salem)</option>
+              <option value="Southern TN (Madurai/Tirunelveli/Kanyakumari)">Southern TN (Madurai/Tirunelveli/Kanyakumari)</option>
+              <option value="Central TN (Trichy/Thanjavur)">Central TN (Trichy/Thanjavur)</option>
+              <option value="NRI / Diaspora">NRI / Diaspora</option>
+            </select>
+          </div>
+
+          <!-- Q6: Specific Feedback Text -->
+          <div class="space-y-4 pt-6 border-t border-slate-800/80">
+            <label class="block text-base font-bold text-slate-100 leading-snug">
+              <span class="text-amber-400 mr-2">6.</span> What specific quality or speech moment made you consider Vijay as CM?
+            </label>
+            <textarea id="q_text" name="q_text" rows="3" placeholder="Type your personal opinion..." class="w-full bg-slate-950 border border-slate-800 text-slate-200 text-sm rounded-2xl p-4 focus:outline-none focus:border-amber-400"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-400 via-yellow-500 to-red-600 hover:from-amber-300 hover:to-red-500 text-slate-950 font-black text-base rounded-2xl shadow-xl shadow-amber-500/20 transition transform active:scale-98">
+            Submit Survey Response
+          </button>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- VIEW 2: THANK YOU / SUCCESS CARD -->
+    <section id="view-success" class="hidden bg-slate-900/90 border border-emerald-500/30 rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl backdrop-blur-xl">
+      <div class="w-20 h-20 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-3xl flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/10">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      
+      <div class="space-y-2">
+        <h3 class="text-2xl sm:text-3xl font-black text-white">Nandri! Response Recorded</h3>
+        <p class="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
+          Your valuable vote and feedback regarding Thalapathy Vijay and TVK have been securely submitted to the pulse database.
+        </p>
+      </div>
+
+      <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+        <button onclick="resetSurveyForm()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold rounded-2xl transition border border-slate-700 flex items-center justify-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span>Submit Another Response</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: PROTECTED ADMIN ANALYTICS DASHBOARD -->
+    <section id="view-admin" class="hidden space-y-8">
+      
+      <!-- Admin Control Toolbar -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">TVK Political Intelligence Command</span>
+          <h1 class="text-2xl font-black text-white">Vijay CM Preference Analytics</h1>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="exportCSV()" class="flex items-center space-x-2 bg-amber-400 hover:bg-amber-300 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-lg shadow-amber-400/10">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            <span>Export CSV</span>
+          </button>
+          <button onclick="switchView('survey')" class="p-2.5 text-slate-400 hover:text-red-400 bg-slate-800 border border-slate-700 rounded-xl transition" title="Exit Admin">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Metrics Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Total Recorded Responses</span>
+          <div id="metric-total-count" class="text-4xl font-black text-amber-400 mt-2">0</div>
+          <p class="text-[11px] text-slate-500 mt-1">Live recorded submissions</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Avg Readiness Rating</span>
+          <div id="metric-avg-rating" class="text-4xl font-black text-emerald-400 mt-2">0.0 / 5</div>
+          <p class="text-[11px] text-slate-500 mt-1">Public confidence rating</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Top Reason Chosen</span>
+          <div id="metric-top-reason" class="text-sm font-extrabold text-white mt-2 line-clamp-2">N/A</div>
+          <p class="text-[11px] text-slate-500 mt-1">Primary catalyst for TVK support</p>
+        </div>
+      </div>
+
+      <!-- Analytics Breakdown 1: Driving Factors -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 space-y-4">
+        <h3 class="font-bold text-white text-base flex items-center space-x-2">
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <span>Primary Factor Driving Support</span>
+        </h3>
+
+        <div id="analytics-factor-list" class="space-y-3 pt-2">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Analytics Breakdown 2: Written Opinions -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 space-y-4">
+        <h3 class="font-bold text-white text-base">Public Written Opinions & Specific Feedback</h3>
+        <div id="analytics-feedback-list" class="space-y-3 max-h-72 overflow-y-auto pr-1">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Admin Passcode Modal -->
+  <div id="modal-admin" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-sm w-full space-y-5 shadow-2xl">
+      
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 bg-amber-400/10 border border-amber-400/30 text-amber-400 rounded-2xl flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-white">Admin Authentication</h3>
+        <p class="text-xs text-slate-400">Enter passcode to view survey analytics dashboard.</p>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+        <div>
+          <input id="admin-passcode-input" type="password" placeholder="Passcode (Default: 1234)" class="w-full bg-slate-950 border border-slate-800 text-center font-mono text-sm tracking-widest text-amber-300 rounded-xl py-3 focus:outline-none focus:border-amber-400" />
+          <p id="admin-passcode-error" class="hidden text-xs text-red-400 mt-2 text-center font-semibold">Invalid Passcode! Try 1234</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" onclick="closeAdminModal()" class="py-2.5 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold hover:bg-slate-700">
+            Cancel
+          </button>
+          <button type="submit" class="py-2.5 bg-amber-400 text-slate-950 font-bold rounded-xl text-xs hover:bg-amber-300 transition">
+            Unlock
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    const DEFAULT_PASSCODE = '1234';
+
+    const INITIAL_RESPONSES = [
+      {
+        id: 'resp-101',
+        submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+        q_factor: 'Alternative to traditional political parties (DMK / AIADMK)',
+        q_priority: 'Zero-tolerance anti-corruption drive',
+        q_rating: 5,
+        q_age: '18 - 25 years (First-time / Gen-Z Voters)',
+        q_region: 'Northern TN (Chennai/Kanchipuram/Vellore)',
+        q_text: 'Ideological clarity shown at the TVK inauguration conference.'
+      },
+      {
+        id: 'resp-102',
+        submittedAt: new Date(Date.now() - 86400000).toISOString(),
+        q_factor: 'Youth icon & clean corrupt-free public image',
+        q_priority: 'Education reform & eradication of state exam barriers',
+        q_rating: 5,
+        q_age: '26 - 35 years',
+        q_region: 'Western TN (Kovai/Erode/Salem)',
+        q_text: 'Genuine commitment towards student welfare and recognition.'
+      },
+      {
+        id: 'resp-103',
+        submittedAt: new Date(Date.now() - 43200000).toISOString(),
+        q_factor: 'Unmatched charismatic leadership & massive public support',
+        q_priority: 'Job creation & IT/Industrial setup in tier-2/3 towns',
+        q_rating: 4,
+        q_age: '18 - 25 years (First-time / Gen-Z Voters)',
+        q_region: 'Southern TN (Madurai/Tirunelveli/Kanyakumari)',
+        q_text: 'Vijay has the public reach and intent to transform Tamil Nadu.'
+      }
+    ];
+
+    let responses = [];
+
+    function initData() {
+      const saved = localStorage.getItem('tvk_html_survey_responses');
+      if (saved) {
+        try {
+          responses = JSON.parse(saved);
+        } catch (e) {
+          responses = INITIAL_RESPONSES;
+        }
+      } else {
+        responses = INITIAL_RESPONSES;
+        saveData();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem('tvk_html_survey_responses', JSON.stringify(responses));
+    }
+
+    function setRating(ratingVal) {
+      document.getElementById('q_rating').value = ratingVal;
+      document.getElementById('rating-label').textContent = ratingVal + ' / 5 Stars Selected';
+
+      const buttons = document.querySelectorAll('.star-btn');
+      buttons.forEach(btn => {
+        const val = parseInt(btn.getAttribute('data-value'));
+        const svg = btn.querySelector('svg');
+        if (val <= ratingVal) {
+          svg.classList.remove('text-slate-800', 'fill-slate-900');
+          svg.classList.add('text-amber-400', 'fill-amber-400');
+        } else {
+          svg.classList.remove('text-amber-400', 'fill-amber-400');
+          svg.classList.add('text-slate-800', 'fill-slate-900');
+        }
+      });
+    }
+
+    function highlightOption(radioElem) {
+      const groupName = radioElem.name;
+      const allRadios = document.querySelectorAll(`input[name="${groupName}"]`);
+      allRadios.forEach(r => {
+        const parentLabel = r.closest('label');
+        if (r.checked) {
+          parentLabel.classList.remove('border-slate-800/80', 'bg-slate-950/60', 'text-slate-300');
+          parentLabel.classList.add('border-amber-400', 'bg-amber-400/10', 'text-amber-200');
+        } else {
+          parentLabel.classList.remove('border-amber-400', 'bg-amber-400/10', 'text-amber-200');
+          parentLabel.classList.add('border-slate-800/80', 'bg-slate-950/60', 'text-slate-300');
+        }
+      });
+    }
+
+    function handleSurveySubmit(e) {
+      e.preventDefault();
+      const errorElem = document.getElementById('survey-error');
+      const errorMsgElem = document.getElementById('survey-error-msg');
+      errorElem.classList.add('hidden');
+
+      const factor = document.querySelector('input[name="q_factor"]:checked');
+      const priority = document.querySelector('input[name="q_priority"]:checked');
+      const rating = parseInt(document.getElementById('q_rating').value || '0');
+      const age = document.getElementById('q_age').value;
+      const region = document.getElementById('q_region').value;
+      const text = document.getElementById('q_text').value.trim();
+
+      if (!factor) {
+        errorMsgElem.textContent = 'Please answer Question 1 (Primary factor driving public trust).';
+        errorElem.classList.remove('hidden');
+        return;
+      }
+      if (!priority) {
+        errorMsgElem.textContent = 'Please answer Question 2 (Top policy area priority).';
+        errorElem.classList.remove('hidden');
+        return;
+      }
+      if (rating === 0) {
+        errorMsgElem.textContent = 'Please rate Vijay\'s readiness for Chief Minister (Question 3).';
+        errorElem.classList.remove('hidden');
+        return;
+      }
+      if (!age) {
+        errorMsgElem.textContent = 'Please select your age demographic (Question 4).';
+        errorElem.classList.remove('hidden');
+        return;
+      }
+      if (!region) {
+        errorMsgElem.textContent = 'Please select your TN voting region (Question 5).';
+        errorElem.classList.remove('hidden');
+        return;
+      }
+
+      const newEntry = {
+        id: 'resp-' + Date.now(),
+        submittedAt: new Date().toISOString(),
+        q_factor: factor.value,
+        q_priority: priority.value,
+        q_rating: rating,
+        q_age: age,
+        q_region: region,
+        q_text: text || 'N/A'
+      };
+
+      responses.unshift(newEntry);
+      saveData();
+      switchView('success');
+    }
+
+    function resetSurveyForm() {
+      document.getElementById('survey-form').reset();
+      setRating(0);
+      document.querySelectorAll('.q-option').forEach(label => {
+        label.classList.remove('border-amber-400', 'bg-amber-400/10', 'text-amber-200');
+        label.classList.add('border-slate-800/80', 'bg-slate-950/60', 'text-slate-300');
+      });
+      document.getElementById('survey-error').classList.add('hidden');
+      switchView('survey');
+    }
+
+    function renderAnalytics() {
+      const total = responses.length;
+      document.getElementById('metric-total-count').textContent = total;
+
+      const avg = total > 0 
+        ? (responses.reduce((sum, r) => sum + (r.q_rating || 0), 0) / total).toFixed(1)
+        : '0.0';
+      document.getElementById('metric-avg-rating').textContent = avg + ' / 5';
+
+      // Calculate factor frequencies
+      const factorCounts = {};
+      responses.forEach(r => {
+        if (r.q_factor) factorCounts[r.q_factor] = (factorCounts[r.q_factor] || 0) + 1;
+      });
+
+      let topReason = 'N/A';
+      let maxCount = 0;
+      for (const f in factorCounts) {
+        if (factorCounts[f] > maxCount) {
+          maxCount = factorCounts[f];
+          topReason = f;
+        }
+      }
+      document.getElementById('metric-top-reason').textContent = topReason;
+
+      // Render Factor Bars
+      const factorListElem = document.getElementById('analytics-factor-list');
+      factorListElem.innerHTML = '';
+      
+      const allFactors = [
+        'Alternative to traditional political parties (DMK / AIADMK)',
+        'Youth icon & clean corrupt-free public image',
+        'TVK Welfare manifesto & progressive vision',
+        'Unmatched charismatic leadership & massive public support'
+      ];
+
+      allFactors.forEach(factor => {
+        const count = factorCounts[factor] || 0;
+        const pct = total ? Math.round((count / total) * 100) : 0;
+
+        const row = document.createElement('div');
+        row.className = 'space-y-1.5';
+        row.innerHTML = `
+          <div class="flex justify-between text-xs text-slate-300 font-medium">
+            <span>${factor}</span>
+            <span class="font-bold text-amber-400">${count} (${pct}%)</span>
+          </div>
+          <div class="h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+            <div class="h-full bg-gradient-to-r from-amber-400 to-red-500 rounded-full transition-all duration-500" style="width: ${pct}%; height: 100%;"></div>
+          </div>
+        `;
+        factorListElem.appendChild(row);
+      });
+
+      // Render Written Opinions Feed
+      const feedbackListElem = document.getElementById('analytics-feedback-list');
+      feedbackListElem.innerHTML = '';
+      const feedbackItems = responses.filter(r => r.q_text && r.q_text !== 'N/A');
+
+      if (feedbackItems.length === 0) {
+        feedbackListElem.innerHTML = '<p class="text-xs text-slate-500">No written feedback provided yet.</p>';
+      } else {
+        feedbackItems.forEach(r => {
+          const item = document.createElement('div');
+          item.className = 'p-4 bg-slate-950 border border-slate-800/80 rounded-2xl text-xs space-y-1.5';
+          item.innerHTML = `
+            <p class="text-slate-200 italic">"${r.q_text}"</p>
+            <div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+              <span>${r.q_region} • ${r.q_age}</span>
+              <span class="text-amber-400 font-bold">${r.q_rating} ⭐</span>
+            </div>
+          `;
+          feedbackListElem.appendChild(item);
+        });
+      }
+    }
+
+    function openAdminModal() {
+      document.getElementById('modal-admin').classList.remove('hidden');
+      document.getElementById('admin-passcode-input').focus();
+    }
+
+    function closeAdminModal() {
+      document.getElementById('modal-admin').classList.add('hidden');
+      document.getElementById('admin-passcode-input').value = '';
+      document.getElementById('admin-passcode-error').classList.add('hidden');
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const code = document.getElementById('admin-passcode-input').value;
+      if (code === DEFAULT_PASSCODE) {
+        closeAdminModal();
+        switchView('admin');
+      } else {
+        document.getElementById('admin-passcode-error').classList.remove('hidden');
+      }
+    }
+
+    function switchView(viewName) {
+      document.getElementById('view-survey').classList.add('hidden');
+      document.getElementById('view-success').classList.add('hidden');
+      document.getElementById('view-admin').classList.add('hidden');
+
+      const navBtnContainer = document.getElementById('nav-action-container');
+
+      if (viewName === 'survey') {
+        document.getElementById('view-survey').classList.remove('hidden');
+        navBtnContainer.innerHTML = `
+          <button onclick="openAdminModal()" class="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs transition shadow-lg shadow-amber-500/20">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <span>Admin Portal</span>
+          </button>
+        `;
+      } else if (viewName === 'success') {
+        document.getElementById('view-success').classList.remove('hidden');
+      } else if (viewName === 'admin') {
+        renderAnalytics();
+        document.getElementById('view-admin').classList.remove('hidden');
+        navBtnContainer.innerHTML = `
+          <button onclick="switchView('survey')" class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 font-bold px-4 py-2 rounded-xl text-xs transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>Public View</span>
+          </button>
+        `;
+      }
+    }
+
+    function exportCSV() {
+      if (responses.length === 0) return;
+
+      const headers = ['Response ID', 'Timestamp', 'Primary Driving Factor', 'Top Policy Priority', 'Readiness Rating', 'Age Group', 'Region', 'Feedback / Opinion'];
+      const rows = responses.map(r => [
+        r.id,
+        new Date(r.submittedAt).toLocaleString(),
+        `"${(r.q_factor || '').replace(/"/g, '""')}"`,
+        `"${(r.q_priority || '').replace(/"/g, '""')}"`,
+        r.q_rating,
+        `"${(r.q_age || '').replace(/"/g, '""')}"`,
+        `"${(r.q_region || '').replace(/"/g, '""')}"`,
+        `"${(r.q_text || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `Vijay_TVK_CM_Survey_${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    window.onload = function() {
+      initData();
+    };
+  </script>
 </body>
 </html>
